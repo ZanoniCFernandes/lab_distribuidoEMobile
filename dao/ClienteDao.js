@@ -27,7 +27,7 @@ class ClienteDao {
     all(callback) {
         db.all(`SELECT * FROM clientes`, [], (err, clientes) => {
             if(err || clientes === undefined) {
-                callback(`Not Found`, null);
+                callback(`Not found`, null);
             } else {
                 callback(null, clientes);
             }
@@ -37,7 +37,7 @@ class ClienteDao {
     total(callback) {
         db.get(`SELECT count(*) as count FROM clientes`, [], (err, total) => {
             if(err || total === undefined) {
-                callback(`Not Found`, null);
+                callback(`Not found`, null);
             } else {
                 callback(null, total.count);
             }

@@ -1,11 +1,14 @@
+// noinspection SqlResolve
+
 const db = require('../config/conexao');
+const Middleware = require('../middlewares/general');
 
 class ProdutoDao {
 
     adicionar(produto) {
         let sql;
 
-        produto.valor *= 100;
+        produto.valor = Middleware.toCents(produto.valor);
 
         if(produto.id !== undefined) {
             sql = `UPDATE estoques SET nome = '${produto.nome.trim()}', valor = ${produto.valor}, quantidade = ${produto.quantidade}`;
@@ -21,6 +24,7 @@ class ProdutoDao {
             if(err || produto === undefined) {
                 callback(`Not found`, null);
             } else {
+                produto.valor = Middleware.toReal(produto.valor).toFixed(2);
                 callback(null, produto);
             }
         });
@@ -31,6 +35,7 @@ class ProdutoDao {
             if(err || estoques === undefined) {
                 callback(`Not found`, null);
             } else {
+                estoques.forEach(produto => produto.valor = Middleware.toReal(produto.valor).toFixed(2));
                 callback(null, estoques);
             }
         });
@@ -43,7 +48,7 @@ class ProdutoDao {
             } else {
                 callback(null, total.count);
             }
-        })
+        });
     };
 
 }

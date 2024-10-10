@@ -7,7 +7,8 @@ Tabelas.seed();
 
 const app = express();
 app.use(express.json());
-const portNumber = 3000;
+let portNumber;
+portNumber = 8080;
 
 consign().include('controllers').into(app);
 
@@ -15,6 +16,6 @@ app.listen(portNumber, () =>
     console.log(`Servidor rodando na porta ${portNumber}`));
 
 app.get('/', (req, res) =>
-    res.send(`Servidor rodando, tudo ok!`));
+    res.status(200).send(`Servidor rodando, tudo ok!`));
 
 

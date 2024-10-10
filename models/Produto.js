@@ -4,6 +4,6 @@ module.exports = class Produto {
         this.nome = nome;
         this.valor = valor;
         this.quantidade = quantidade;
-    }
+    };
 
 }

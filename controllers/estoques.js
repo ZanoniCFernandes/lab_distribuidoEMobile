@@ -25,7 +25,7 @@ module.exports = app => {
             res.status(200).send(`Produto atualizado com sucesso!
                                     nome:  ${newProduto.nome.trim()},
                                     valor: ${newProduto.valor},
-                                    quantidade: ${newProduto.quantidade}`)
+                                    quantidade: ${newProduto.quantidade}`);
             ProdutoDao.adicionar(newProduto);
         }
     })
